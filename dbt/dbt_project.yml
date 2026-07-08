@@ -1,0 +1,20 @@
+name: mnemosyne
+version: "0.0.0"
+config-version: 2
+
+profile: mnemosyne
+
+model-paths: ["models"]
+snapshot-paths: ["snapshots"]
+test-paths: ["tests"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  mnemosyne:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
