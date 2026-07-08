@@ -1,0 +1,16 @@
+[project]
+name = "mnemosyne-pipeline"
+version = "0.0.0"
+requires-python = ">=3.13"
+dependencies = [
+    "psycopg[binary]>=3.2",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+    "pytest>=8.0",
+]
+
+[tool.ruff]
+line-length = 100
