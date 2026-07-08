@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS raw.member_dim (
     account_created timestamptz,
     claimed_at timestamptz,
     deactivated_at timestamptz,
-    workspaces integer,
     created_at timestamptz NOT NULL DEFAULT now(),
     updated_at timestamptz NOT NULL DEFAULT now()
 );
@@ -37,12 +36,14 @@ CREATE TABLE IF NOT EXISTS raw.member_activity_snapshot (
 
 CREATE TABLE IF NOT EXISTS raw.channel_dim (
     channel_id text PRIMARY KEY,
+    name text,
+    visibility text,
+    archived boolean,
     date_created timestamptz,
-    workspaces integer,
-    external_organizations integer,
     last_active_at timestamptz,
+    creator_id text,
     total_members integer,
-    regular_members integer,
+    full_members integer,
     guests integer,
     created_at timestamptz NOT NULL DEFAULT now(),
     updated_at timestamptz NOT NULL DEFAULT now()
