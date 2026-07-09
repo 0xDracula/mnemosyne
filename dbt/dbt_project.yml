@@ -16,6 +16,9 @@ models:
   mnemosyne:
     staging:
       +materialized: view
+      +post-hook: "grant select on {{ this }} to rails_app"
     marts:
       +materialized: table
-      +post-hook: "grant select on {{ this }} to superset_ro"
+      +post-hook:
+        - "grant select on {{ this }} to superset_ro"
+        - "grant select on {{ this }} to rails_app"
