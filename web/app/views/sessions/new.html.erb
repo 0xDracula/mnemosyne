@@ -1,0 +1,16 @@
+<h1>Mnemosyne</h1>
+
+<% if notice %>
+  <p><%= notice %></p>
+<% end %>
+
+<% if current_staff %>
+  <p>you're in as <%= current_staff.user_id %></p>
+  <%= button_to "log out", logout_path, method: :delete %>
+<% else %>
+  <p>sign in with Hack Club Auth to continue</p>
+  <%= form_tag "/auth/hackclub", method: :post, authenticity_token: false, data: { turbo: false } do %>
+    <%= hidden_field_tag :authenticity_token, Rack::Protection::AuthenticityToken.token(session) %>
+    <%= submit_tag "log in with Hack Club Auth" %>
+  <% end %>
+<% end %>

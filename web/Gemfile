@@ -36,6 +36,10 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Hack Club Auth login (OIDC)
+gem "omniauth", "~> 2.1"
+gem "omniauth_openid_connect", "~> 0.8"
+
 group :development, :test do
   # Load ../infra/.env for local dev, matching the pipeline's env source
   gem "dotenv", require: false
