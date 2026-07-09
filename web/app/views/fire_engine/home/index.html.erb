@@ -7,10 +7,34 @@
   <% end %>
 </div>
 
+<% if @results %>
+  <div class="fe-section-label">[ RESULTS ]</div>
+  <div class="fe-panel mb-10">
+    <% if @results.any? %>
+      <% @results.each do |m| %>
+        <div class="py-2 border-b fe-divider">
+          <%= link_to (m.display_name.presence || m.name.presence || m.user_id), fire_engine_member_path(m.user_id), style: "color:#d8d8d8" %>
+          <span class="fe-stamp ml-2"><%= m.user_id %></span>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="fe-stamp">no matches</p>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="fe-section-label">[ RECENT ACTIVITY ]</div>
 
 <div class="fe-panel mb-10">
-  <p class="fe-stamp">no lookups recorded yet</p>
+  <% if @recent.any? %>
+    <% @recent.each do |log| %>
+      <div class="py-1 fe-stamp">
+        <%= log.looked_at.strftime("%Y-%m-%d %H:%M") %> &middot; viewed <%= log.subject_user_id %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="fe-stamp">no lookups recorded yet</p>
+  <% end %>
 </div>
 
 <div class="fe-stamp">

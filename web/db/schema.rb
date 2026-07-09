@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_09_124753) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_09_135837) do
   create_schema "app"
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "app.access_log", force: :cascade do |t|
+    t.string "actor_id", null: false
+    t.datetime "created_at", null: false
+    t.string "field_class", null: false
+    t.datetime "looked_at", null: false
+    t.string "subject_user_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_access_log_on_actor_id"
+    t.index ["subject_user_id"], name: "index_access_log_on_subject_user_id"
+  end
 
   create_table "app.staff", primary_key: "user_id", id: :string, force: :cascade do |t|
     t.boolean "community_manager", default: false, null: false

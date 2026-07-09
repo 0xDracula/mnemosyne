@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :fire_engine do
     root to: "home#index"
+    resources :members, only: [:show]
   end
 
   root "home#index"

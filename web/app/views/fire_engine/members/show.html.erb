@@ -1,0 +1,31 @@
+<div class="fe-section-label">[ MEMBER PROFILE ]</div>
+
+<div class="fe-panel mb-8 flex gap-6">
+  <img src="https://cachet.dunkirk.sh/users/<%= @member.user_id %>/r" alt=""
+       class="w-20 h-20 object-cover border" style="border-color:#2a2d31">
+  <div>
+    <div class="text-lg font-bold"><%= @member.display_name.presence || @member.name %></div>
+    <div class="fe-stamp mt-1">slack id: <%= @member.user_id %></div>
+    <div class="fe-stamp">username: <%= @member.username %></div>
+    <div class="fe-stamp">email: <%= @member.email %></div>
+    <div class="fe-stamp">joined: <%= @member.claimed_at&.strftime("%Y-%m-%d") || "never claimed" %></div>
+  </div>
+</div>
+
+<div class="fe-section-label">[ ACTIVITY ]</div>
+
+<div class="fe-panel mb-8">
+  <% if @activity %>
+    <p class="fe-stamp">messages posted: <%= @activity.messages_posted %></p>
+    <p class="fe-stamp">channels joined: <%= @activity.channels_joined %></p>
+    <p class="fe-stamp">last active: <%= @activity.last_active_at&.strftime("%Y-%m-%d") || "unknown" %></p>
+  <% else %>
+    <p class="fe-stamp">no activity data available</p>
+  <% end %>
+</div>
+
+<div class="fe-stamp">
+  lookup by <%= current_staff.user_id %> &middot; logged <%= Time.current.strftime("%Y-%m-%d %H:%M UTC") %>
+</div>
+
+<%= link_to "back to search", fire_engine_root_path, class: "fe-link" %>
