@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   get "auth/failure", to: "sessions#failure", as: :auth_failure
   delete "logout", to: "sessions#destroy", as: :logout
 
-  root "sessions#new"
+  namespace :fire_engine do
+    root to: "home#index"
+  end
+
+  root "home#index"
 end

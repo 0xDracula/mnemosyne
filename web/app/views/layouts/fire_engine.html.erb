@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Fire Engine" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="fe-root min-h-screen">
+    <div class="fe-banner">
+      notice &mdash; fire engine is a monitored system. every member lookup is recorded to an immutable audit log.
+    </div>
+
+    <% if notice %>
+      <p class="fe-stamp px-6 py-2 border-b fe-divider"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="fe-stamp px-6 py-2 border-b fe-divider" style="color:#f2b8b5"><%= alert %></p>
+    <% end %>
+
+    <header class="flex items-start justify-between px-6 py-4 border-b fe-divider">
+      <div>
+        <h1 class="text-lg font-bold tracking-wide">FIRE ENGINE</h1>
+        <div class="fe-stamp">hack club &middot; fd member reference</div>
+      </div>
+      <div class="fe-stamp text-right">
+        operator: <%= current_staff.user_id %><br>
+        <%= link_to "back to mnemosyne", root_path, class: "fe-link" %>
+      </div>
+    </header>
+
+    <main class="px-6 py-10 max-w-5xl mx-auto">
+      <%= yield %>
+    </main>
+  </body>
+</html>

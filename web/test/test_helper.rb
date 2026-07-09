@@ -6,9 +6,17 @@ module ActiveSupport
   class TestCase
     parallelize(workers: 1)
 
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    def sign_in_as(staff)
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.mock_auth[:hackclub] = OmniAuth::AuthHash.new(
+        provider: "hackclub",
+        uid: "ident!#{staff.user_id}",
+        info: {},
+        extra: { raw_info: { "slack_id" => staff.user_id } }
+      )
+      get "/auth/hackclub/callback"
+    end
   end
 end

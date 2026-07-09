@@ -1,1 +1,163 @@
 @import "tailwindcss";
+
+@layer components {
+  .fe-root {
+    background-color: #0b0c0d;
+    color: #d8d8d8;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Consolas, monospace;
+  }
+
+  .fe-banner {
+    background-color: #1a0a0a;
+    border-top: 2px solid #b3261e;
+    border-bottom: 1px solid #b3261e;
+    color: #f2b8b5;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .fe-divider {
+    border-color: #2a2d31;
+  }
+
+  .fe-section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #d3564d;
+    border-bottom: 1px solid #2a2d31;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .fe-panel {
+    background-color: #121315;
+    border: 1px solid #2a2d31;
+    padding: 1.5rem;
+  }
+
+  .fe-stamp {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: #6b6f73;
+    text-transform: uppercase;
+  }
+
+  .fe-input {
+    background-color: #0b0c0d;
+    border: 1px solid #2a2d31;
+    color: #d8d8d8;
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+  }
+
+  .fe-input:focus {
+    outline: none;
+    border-color: #b3261e;
+  }
+
+  .fe-btn {
+    background-color: #b3261e;
+    color: #f4f4f4;
+    border: 1px solid #b3261e;
+    padding: 0.5rem 1.25rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .fe-btn:hover {
+    background-color: #8f1e18;
+  }
+
+  .fe-link {
+    color: #8a8f94;
+    text-decoration: underline;
+    font-size: 0.8rem;
+  }
+
+  .mn-root {
+    background-color: #f4f4f0;
+    color: #111111;
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Consolas, monospace;
+  }
+
+  .mn-divider {
+    border-color: #111111;
+  }
+
+  .mn-wordmark {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .mn-stamp {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: #6b6b6b;
+    text-transform: uppercase;
+  }
+
+  .mn-section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b3261e;
+    border-bottom: 1px solid #111111;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .mn-panel {
+    background-color: #ffffff;
+    border: 1px solid #111111;
+    padding: 1.5rem;
+  }
+
+  .mn-btn {
+    background-color: #111111;
+    color: #f4f4f0;
+    border: 1px solid #111111;
+    padding: 0.5rem 1.25rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .mn-btn:hover {
+    background-color: #b3261e;
+    border-color: #b3261e;
+  }
+
+  .mn-btn-accent {
+    background-color: #b3261e;
+    color: #ffffff;
+    border: 1px solid #b3261e;
+    padding: 0.5rem 1.25rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .mn-btn-accent:hover {
+    background-color: #8f1e18;
+    border-color: #8f1e18;
+  }
+
+  .mn-link {
+    color: #6b6b6b;
+    text-decoration: underline;
+    font-size: 0.8rem;
+  }
+}

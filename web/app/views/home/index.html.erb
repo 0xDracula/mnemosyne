@@ -1,0 +1,13 @@
+<div class="mn-section-label">[ COMMUNITY OVERVIEW ]</div>
+
+<div class="mn-panel mb-8">
+  <p class="mn-stamp mb-2">operator: <%= current_staff.user_id %></p>
+  <p>community health dashboards land here.</p>
+</div>
+
+<div class="mn-panel mb-8" style="border-color:#b3261e">
+  <p class="mb-3">fire engine &mdash; gated member reference for fd. every lookup is logged.</p>
+  <%= link_to "enter fire engine", fire_engine_root_path, class: "mn-btn-accent inline-block" %>
+</div>
+
+<%= button_to "log out", logout_path, method: :delete, class: "mn-link" %>

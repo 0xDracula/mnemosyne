@@ -1,16 +1,12 @@
-<h1>Mnemosyne</h1>
+<div class="mn-section-label">[ SIGN IN ]</div>
 
-<% if notice %>
-  <p><%= notice %></p>
-<% end %>
+<div class="mn-panel">
+  <p class="mb-6">authenticate with hack club auth to continue. access beyond this point is restricted to allowlisted staff and logged accordingly.</p>
 
-<% if current_staff %>
-  <p>you're in as <%= current_staff.user_id %></p>
-  <%= button_to "log out", logout_path, method: :delete %>
-<% else %>
-  <p>sign in with Hack Club Auth to continue</p>
   <%= form_tag "/auth/hackclub", method: :post, authenticity_token: false, data: { turbo: false } do %>
     <%= hidden_field_tag :authenticity_token, Rack::Protection::AuthenticityToken.token(session) %>
-    <%= submit_tag "log in with Hack Club Auth" %>
+    <%= submit_tag "log in with hack club auth", class: "mn-btn-accent" %>
   <% end %>
-<% end %>
+</div>
+
+<p class="mn-stamp mt-6">mnemosyne &middot; community manager + fire engine portal</p>

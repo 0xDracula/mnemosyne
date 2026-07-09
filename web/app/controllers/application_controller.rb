@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   stale_when_importmap_changes
 
+  before_action :require_staff
+
   helper_method :current_staff
 
   private
@@ -10,5 +12,11 @@ class ApplicationController < ActionController::Base
     return nil unless session[:user_id]
 
     @current_staff ||= Staff.find_by(user_id: session[:user_id])
+  end
+
+  def require_staff
+    return if current_staff&.community_manager? || current_staff&.firefighter?
+
+    redirect_to login_path, alert: "sign in to continue"
   end
 end

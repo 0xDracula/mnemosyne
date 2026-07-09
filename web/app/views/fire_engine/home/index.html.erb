@@ -1,0 +1,18 @@
+<div class="fe-section-label">[ MEMBER LOOKUP ]</div>
+
+<div class="fe-panel mb-10">
+  <%= form_tag fire_engine_root_path, method: :get, class: "flex gap-3" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "slack id, username, or email", class: "fe-input flex-1" %>
+    <%= submit_tag "search", class: "fe-btn" %>
+  <% end %>
+</div>
+
+<div class="fe-section-label">[ RECENT ACTIVITY ]</div>
+
+<div class="fe-panel mb-10">
+  <p class="fe-stamp">no lookups recorded yet</p>
+</div>
+
+<div class="fe-stamp">
+  session <%= current_staff.user_id %> &middot; access logged &middot; <%= Time.current.strftime("%Y-%m-%d %H:%M UTC") %>
+</div>
