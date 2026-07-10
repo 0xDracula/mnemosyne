@@ -9,13 +9,10 @@
   <div>
     <div class="flex items-center gap-2 mb-2">
       <span class="fe-badge <%= 'fe-badge-warn' if @case[:status] == 'open' %>"><%= @case[:status] %></span>
-      <% if @case[:linked_report_id] %>
-        <%= link_to "filed via report ##{@case[:linked_report_id]}", fire_engine_reports_path, class: "fe-link" %>
-      <% end %>
     </div>
     <p class="fe-label">
-      target <%= link_to @case[:target_user_id], fire_engine_member_path(@case[:target_user_id]), class: "fe-link" %>
-      &middot; assignee <%= @case[:assignee] || "unassigned" %>
+      <%= @case[:snippet].presence || "no snippet" %>
+      &middot; assignees <%= @case[:assignees].any? ? @case[:assignees].join(", ") : "unassigned" %>
       &middot; opened <%= @case[:opened_at].strftime("%Y-%m-%d") %>
     </p>
   </div>
@@ -85,13 +82,16 @@
             <div class="px-5 py-4 border-b fe-divider last:border-b-0">
               <div class="flex items-center gap-2 mb-2">
                 <span class="fe-badge fe-badge-warn"><%= action[:action_type].tr("_", " ") %></span>
-                <span class="fe-label"><%= action[:performed_at].strftime("%Y-%m-%d") %> &middot; by <%= action[:performed_by] %></span>
+                <span class="fe-label">
+                  <%= action[:performed_at].strftime("%Y-%m-%d") %> &middot; by <%= action[:performed_by] %>
+                  &middot; against <%= link_to action[:target_user_id], fire_engine_member_path(action[:target_user_id]), class: "fe-link" %>
+                </span>
               </div>
               <p class="mb-1"><%= action[:what_they_did] %></p>
               <% if action[:ban_until] %>
                 <p class="fe-label mb-1">ban until <%= action[:ban_until].strftime("%Y-%m-%d") %></p>
               <% end %>
-              <%= link_to "view thread", action[:thread_url], class: "fe-link" %>
+              <%= link_to "view thread", action[:thread_url], class: "fe-link" if action[:thread_url] %>
             </div>
           <% end %>
         <% else %>
@@ -109,7 +109,7 @@
         <%= form_with url: fire_engine_case_case_actions_path(@case[:case_number]), method: :post, local: true do %>
           <div class="mb-4">
             <label class="fe-label block mb-2">reported user(s), comma separated</label>
-            <%= text_field_tag :target_user_ids, @case[:target_user_id], class: "fe-field", style: "width:100%" %>
+            <%= text_field_tag :target_user_ids, nil, class: "fe-field", style: "width:100%" %>
           </div>
 
           <div class="mb-4">
