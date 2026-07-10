@@ -23,7 +23,7 @@ module FireEngine
       return redirect_to(fire_engine_cases_path, alert: "no case found for that number") unless raw_case
 
       @case = case_summary(raw_case)
-      @case_actions = (raw_case["actions"] || []).map { |a| case_action_summary(a) }
+      @case_actions = (raw_case["actions"] || []).map { |a| LylaCaseActionPresenter.build(a) }
       @all_cases = lyla.cases.map { |c| case_summary(c) }
       @thread_messages = MOCK_THREAD_MESSAGES
       @action_type_options = ACTION_TYPE_OPTIONS
@@ -53,19 +53,5 @@ module FireEngine
       }
     end
 
-    def case_action_summary(a)
-      data = a["data"] || {}
-
-      {
-        case_number: a["caseNumber"],
-        action_type: a["actionType"],
-        target_user_id: a["targetUserId"],
-        performed_by: (a["performedBy"] || []).join(", "),
-        what_they_did: data["whatTheyDid"],
-        ban_until: data["banUntil"].presence && Date.parse(data["banUntil"]),
-        performed_at: Time.at(a["performedAt"] / 1000.0),
-        thread_url: data["permalink"]
-      }
-    end
   end
 end

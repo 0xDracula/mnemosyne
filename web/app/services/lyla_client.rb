@@ -22,6 +22,10 @@ class LylaClient
     request(:post, "/api/v1/case-actions", body: fields)
   end
 
+  def case_actions_for_member(user_id, limit: 20)
+    request(:get, "/api/v1/members/#{user_id}/case-actions", params: { limit: limit })
+  end
+
   private
 
   def request(method, path, params: nil, body: nil)
